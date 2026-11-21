@@ -1,0 +1,37 @@
+# Cache: obrazy i fonty — 1 rok
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/pdf/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[redirects]]
+  from   = "https://centrummądrejnauki.pl/*"
+  to     = "https://centrummadrejnauki.pl/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://www.centrummądrejnauki.pl/*"
+  to     = "https://centrummadrejnauki.pl/:splat"
+  status = 301
+  force  = true

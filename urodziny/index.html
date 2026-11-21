@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urodziny tematyczne dla dzieci - Centrum Mądrej Nauki Olkusz</title>
+  <meta name="description" content="Niezapomniane urodziny tematyczne dla dzieci w Olkuszu: Escape Room, Kuchnia Molekularna, Slime Factory, Szalony Naukowiec i więcej. Centrum Mądrej Nauki.">
+  <link rel="canonical" href="https://centrummadrejnauki.pl/urodziny">
+  <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<main>
+
+  <section class="page-hero page-hero--urodziny">
+    <div class="container">
+      <h1>Urodziny z eksperymentami w Centrum Mądrej Nauki</h1>
+      <p>Fascynujące doświadczenia i mnóstwo kreatywnej zabawy - przyjęcie, które dzieci będą wspominać latami.</p>
+    </div>
+  </section>
+
+  <!-- Opis -->
+  <section class="section urodziny-intro" style="background:var(--c-surface)">
+    <div class="container">
+      <div class="urodziny-intro__grid">
+
+        <div class="urodziny-intro__text">
+          <p class="lead-text">Urodziny z eksperymentami w Centrum Mądrej Nauki to fascynujące doświadczenia i mnóstwo kreatywnej zabawy. Tworzymy przestrzeń, w której dzieci mogą odkrywać, eksperymentować, rozwijać wyobraźnię i przede wszystkim doskonale się bawić.</p>
+          <p>Nasze przyjęcia urodzinowe wyróżniają się starannie przygotowanym programem, różnorodnością atrakcji, profesjonalną organizacją oraz dbałością o każdy szczegół. Zapewniamy eksperymenty chemiczne dostosowane do wieku i zainteresowań uczestników, estetycznie przygotowany poczęstunek oraz przyjazną, swobodną atmosferę, w której każde dziecko może poczuć się wyjątkowo.</p>
+          <p>Do organizacji każdego przyjęcia podchodzimy indywidualnie. Z uwagą wsłuchujemy się w marzenia solenizantów oraz oczekiwania rodziców, aby stworzyć wydarzenie dopasowane do ich potrzeb. Zależy nam nie tylko na zapewnieniu atrakcyjnych form spędzania czasu, ale przede wszystkim na budowaniu pozytywnych emocji i wspomnień, które pozostaną z dziećmi na długo.</p>
+          <p>Bogata oferta tematyczna, zaangażowanie naszego zespołu, wysoki standard organizacji oraz troska o komfort dzieci i rodziców sprawiają, że każde przyjęcie ma niepowtarzalny charakter.</p>
+          <p>Zapraszamy do organizacji urodzin w Centrum Mądrej Nauki!</p>
+        </div>
+
+        <div class="urodziny-intro__img">
+          <img
+            src="/assets/images/Urodziny_1.jpeg"
+            alt="Urodziny w Centrum Mądrej Nauki"
+            loading="lazy"
+          >
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA oferta PDF -->
+  <section class="section--sm">
+    <div class="container" style="text-align:center">
+      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:var(--sp-3);background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--r-lg);padding:var(--sp-6) var(--sp-8);box-shadow:var(--shadow-sm)">
+        <p style="font-size:1.125rem;font-weight:600;color:var(--c-text);margin:0">Chcesz poznać szczegóły naszej oferty?</p>
+        <p style="color:var(--c-muted);margin:0">Pobierz pełną ofertę urodzinową w formacie PDF.</p>
+        <a
+          href="/assets/pdf/Oferta%20urodzinowa.pdf"
+          class="btn btn--primary btn--lg"
+          target="_blank"
+          rel="noopener"
+          aria-label="Pobierz ofertę urodzinową w PDF (otwiera się w nowej karcie)"
+        >
+          Pobierz ofertę urodzinową (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formularz rezerwacji -->
+  <section class="section" id="formularz-rezerwacji" aria-labelledby="ur-form-heading" style="background:var(--c-surface)">
+    <div class="container" style="max-width:760px">
+      <div class="section__header">
+        <span class="section__label">Zarezerwuj termin</span>
+        <h2 id="ur-form-heading" class="section__title">Formularz rezerwacji urodzin</h2>
+        <p class="section__desc">Wypełnij formularz, a oddzwonimy w ciągu 24 godzin, by potwierdzić szczegóły.</p>
+      </div>
+      <div data-form-wrap>
+        <form name="rezerwacja-urodziny" method="POST" data-form="true" class="form-section" novalidate>
+          <input type="hidden" name="form-name" value="rezerwacja-urodziny">
+          <p class="honeypot"><label>Nie wypełniaj: <input name="bot-field"></label></p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="u-dziecko">Imię dziecka-solenizanta <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="u-dziecko" name="imie-dziecka" required>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="u-wiek">Wiek dziecka <span class="req" aria-hidden="true">*</span></label>
+              <select id="u-wiek" name="wiek" required>
+                <option value="">Wybierz wiek</option>
+                <option>4 lata</option><option>5 lat</option><option>6 lat</option>
+                <option>7 lat</option><option>8 lat</option><option>9 lat</option>
+                <option>10 lat</option><option>11 lat</option><option>12+ lat</option>
+              </select>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="u-pakiet">Wybrany pakiet <span class="req" aria-hidden="true">*</span></label>
+            <select id="u-pakiet" name="pakiet" required>
+              <option value="">Wybierz pakiet</option>
+              <option>Escape Room</option>
+              <option>Kuchnia Molekularna</option>
+              <option>Czekoladowe</option>
+              <option>Księżniczki</option>
+              <option>Slime Factory</option>
+              <option>Szalony Naukowiec</option>
+              <option>Nie wiem - proszę o kontakt</option>
+            </select>
+            <span class="field-error" role="alert"></span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="u-termin">Preferowany termin <span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="u-termin" name="termin" required>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="u-dzieci">Liczba dzieci <span class="req" aria-hidden="true">*</span></label>
+              <select id="u-dzieci" name="liczba-dzieci" required>
+                <option value="">Wybierz</option>
+                <option>8–10 dzieci</option>
+                <option>10–15 dzieci</option>
+                <option>15–20 dzieci</option>
+                <option>Powyżej 20</option>
+              </select>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="u-dodatki">Dodatki (opcjonalnie)</label>
+            <select id="u-dodatki" name="dodatki">
+              <option value="">Brak</option>
+              <option>Catering</option>
+              <option>Fotobudka</option>
+              <option>Paczuszki dla gości</option>
+              <option>Catering + Paczuszki</option>
+              <option>Wszystkie dodatki</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="u-rodzic">Imię rodzica / opiekuna <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="u-rodzic" name="imie-rodzica" required autocomplete="name">
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="u-tel">Telefon <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="u-tel" name="telefon" required autocomplete="tel">
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="u-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="u-email" name="email" required autocomplete="email">
+            <span class="field-error" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="u-msg">Dodatkowe uwagi</label>
+            <textarea id="u-msg" name="wiadomosc" placeholder="Np. alergie pokarmowe, specjalne życzenia, drugi termin..."></textarea>
+          </div>
+
+          <div class="form-checkbox">
+            <input type="checkbox" id="u-gdpr" name="gdpr" required>
+            <label for="u-gdpr">Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z <a href="/polityka-prywatnosci">polityką prywatności</a>. <span class="req" aria-hidden="true">*</span></label>
+          </div>
+          <span class="field-error" role="alert"></span>
+
+          <button type="submit" class="btn btn--lg" style="width:100%;justify-content:center;margin-top:var(--sp-2);background:linear-gradient(135deg,#E8216B,var(--c-violet));color:white;border:none">
+            Zarezerwuj termin urodzin
+          </button>
+        </form>
+        <div class="form-success" role="alert">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+          <h3>Rezerwacja wysłana!</h3>
+          <p>Zadzwonimy do Ciebie w ciągu 24 godzin, by potwierdzić termin. Tel: <a href="tel:+48538956998" style="color:var(--c-violet)">538 956 998</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="/assets/js/layout.js"></script>
+<script src="/assets/js/forms.js"></script>
+</body>
+</html>

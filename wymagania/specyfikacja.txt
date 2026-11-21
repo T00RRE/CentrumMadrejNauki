@@ -1,0 +1,239 @@
+Specyfikacja dla programisty
+17 wrz 2026 · @Mikołaj
+Specyfikacja implementacyjna strony Centrum Mądrej Nauki — na jej podstawie programista buduje stronę. Uzupełnia zakładkę „Propozycja” o konkrety techniczne.
+1. Przegląd i stos technologiczny
+Strona jest informacyjno-marketingowa: celem konwersji jest kontakt rodzica (telefon, mail, formularz zapisu). Treść zmienia się rzadko, dochodzą trzy formularze. To strona w większości statyczna, nie aplikacja.
+Rekomendowany stack — dwie ścieżki, wybór zależy od tego, czy klientka chce sama edytować treści:
+• Ścieżka A (zalecana): statyczna strona — Astro lub Next.js w trybie static export, albo czysty HTML/CSS/JS budowany Vite. Hosting statyczny (Netlify, Vercel, Cloudflare Pages). Formularze przez usługę (Netlify Forms, Formspree) lub prosty endpoint. Najszybsza i najtańsza.
+• Ścieżka B: klientka edytuje treści sama → WordPress z lekkim motywem, albo headless CMS (np. Sanity) + statyczny front. Więcej pracy i utrzymania.
+Założenia obowiązujące niezależnie od stacku: mobile-first, <html lang="pl">, zgodność z RODO w formularzach, szybkie ładowanie (cel Lighthouse ≥ 90 na mobile), gotowość na 6 zakładek + hero „słoneczko”.
+2. Architektura strony
+Dziewięć stron w sześciu pozycjach menu (Oferta grupuje trzy podstrony). URL-e małymi literami, z myślnikami, bez polskich znaków.
+Strona
+URL
+W menu
+Uwagi
+Strona główna
+/
+logo
+hero „słoneczko”
+O nas
+/o-nas
+tak
+—
+Oferta (landing)
+/oferta
+tak ▾
+przegląd + linki do 3 podstron
+Język angielski
+/oferta/angielski
+podmenu
+formularz zapisu
+Laboratorium pomysłów
+/oferta/laboratorium
+podmenu
+warianty i tematy warsztatów
+Zajęcia kreatywne
+/oferta/kreatywne
+podmenu
+—
+Matlandoo
+/matlandoo
+tak
+własna strefa kolorów
+Urodziny
+/urodziny
+tak
+pakiety + rezerwacja
+Wydarzenia
+/wydarzenia
+tak
+półkolonie, akcje sezonowe
+Kontakt
+/kontakt
+tak
+formularz + mapa
+Dodatkowo: /polityka-prywatnosci (wymóg RODO, link w stopce) i strona 404. Nawigacja główna to menu górne (6 pozycji, Oferta rozwijana); pełna mapa linków powtórzona w stopce.
+3. Header, menu i stopka
+Header (sticky, jasne tło z palety głównej):
+• Logo po lewej, link do /. Menu po prawej.
+• Pozycje menu: O nas · Oferta ▾ · Matlandoo · Urodziny · Wydarzenia · Kontakt.
+• Oferta rozwija dropdown: Język angielski, Laboratorium pomysłów, Zajęcia kreatywne.
+• Wyróżniony przycisk CTA po prawej (np. „Zapisz dziecko” → /kontakt lub kotwica do formularza).
+• Mobile: logo + hamburger; kliknięcie otwiera pełnoekranowy drawer, w nim podmenu Oferty rozwijane akordeonem.
+• Stan aktywnej strony zaznaczony w menu (podkreślenie / kolor).
+Stopka (ciemniejsze tło z palety głównej):
+• Dane kontaktowe: Olkusz, ul. Legionów Polskich 14 · tel. 538 956 998 · kolekcjepolekcjach@gmail.com.
+• Ikona i link Facebook (@centrum mądrej nauki); miejsce na Instagram, jeśli będzie.
+• Mapa strony (linki do wszystkich zakładek) i link do polityki prywatności.
+• Osadzona mini-mapa Google z pinezką lokalu (opcjonalnie).
+• Telefon i e-mail jako klikalne tel: i mailto:.
+4. Strona główna — hero „słoneczko”
+To znak rozpoznawczy strony i tylko sekcja hero strony głównej — nie zastępuje menu górnego. Radialny układ pojawia się na desktopie; na mobile ta sama treść staje się listą kafli.
+Budowa (desktop):
+• Sekcja pełnej szerokości, tło = gradient palety głównej (magenta → fiolet → kobalt), w tle subtelne ikonki „naukowe” z roll-upu (książki, żarówki, trybiki, kolby).
+• Na środku duże, okrągłe logo Centrum Mądrej Nauki (plik SVG).
+• 6 bąbelków rozmieszczonych równomiernie na okręgu wokół logo, co 60°, start od góry. Cienkie „promienie” łączą logo z każdym bąbelkiem.
+• Każdy bąbelek to link <a> do zakładki.
+Pozycja (kąt od góry)
+Bąbelek
+Link
+0°
+O nas
+/o-nas
+60°
+Oferta
+/oferta
+120°
+Matlandoo
+/matlandoo
+180°
+Urodziny
+/urodziny
+240°
+Wydarzenia
+/wydarzenia
+300°
+Kontakt
+/kontakt
+Zachowanie i animacje:
+• Wejście: bąbelki pojawiają się fade + scale (kaskadowo). Spoczynek: delikatny „float” (unoszenie). Hover/focus: powiększenie i podświetlenie.
+• Animować tylko transform i opacity (bez przeliczania layoutu). Uszanować prefers-reduced-motion — wtedy bez floatu i wejścia.
+• Mobile: układ radialny wyłączony (media query). Bąbelki stają się dużymi kaflami-przyciskami pod logo — grid 2 kolumny (lub 1 na wąskich), wygodne dla kciuka.
+Dostępność: bąbelki to pełnoprawne linki z czytelnym tekstem, aria-label, focus-visible i logiczną kolejnością w DOM. Menu górne jest zawsze obecne, więc hero jest dodatkiem, nie jedyną drogą nawigacji.
+5. Strona główna — pozostałe sekcje
+Pod hero użytkownik przewija sekcje w tej kolejności. Każda jest jednokolumnowa na mobile.
+1. Teaser „O nas” — 2–3 zdania o filozofii + przycisk „Poznaj nas”.
+2. Przegląd oferty — karty kierunków (Angielski, Matlandoo, Laboratorium, Kreatywne), każda: obraz/ikona, tytuł, jedno zdanie, przycisk do podstrony.
+3. Baner urodzinowy — mocne CTA („Urodziny w Laboratorium Pomysłów”) z przyciskiem do /urodziny; to sekcja dochodowa, więc dobrze widoczna.
+4. Wydarzenia / aktualności — nadchodzące półkolonie i akcje sezonowe; docelowo dane edytowalne, na start statyczne.
+5. Zaufanie — hasło o dobrych opiniach, link do Facebooka, ewentualnie opinie rodziców.
+6. Kontakt / CTA końcowe — telefon klikalny, mini-mapa, krótki formularz lub przycisk do /kontakt.
+Sekcje 2 i 3 są najważniejsze dla konwersji — powinny być powyżej lub tuż przy pierwszym zwoju po hero.
+6. Podstrony — zawartość
+Treść pochodzi z maila klientki i dwóch ofert PDF (Laboratorium, Urodziny). Każda podstrona kończy się CTA.
+Podstrona
+Sekcje / komponenty
+CTA
+O nas
+Nagłówek, filozofia „Miejsce, w którym dzieci chcą się uczyć”, lista zajęć, wartości
+Przyciski do Oferty i Urodzin
+Oferta (landing)
+Intro + 3 karty linkujące do podstron
+Wejście w podstrony
+Angielski
+Mission English, „dlaczego działa”, grupy do 8 osób i lekcje indywidualne
+Formularz zapisu
+Laboratorium
+Warianty (jednorazowe / cykliczne / urodziny / festyny), tematy (SLIME, Kosmetyki, Szalony Naukowiec, Kraina Lodu, Warsztaty czekoladowe i in.), ceny orientacyjne
+Formularz zapytania
+Kreatywne
+Techniki: rysunek, malarstwo, ceramika, linoryt; inspiracje sztuką
+Formularz zapisu
+Matlandoo
+Strefa kolorów Matlandoo, metoda dla dzieci 6–9 lat, grupy do 8, logo Matlandoo, hasło „Matematyka to przygoda”
+Formularz zapisu
+Urodziny
+Pakiety (Escape Room, Kuchnia Molekularna, Czekoladowe, Księżniczki, Slime Factory, Szalony Naukowiec) z cenami, „co wchodzi w pakiet”, dodatki
+Formularz rezerwacji terminu
+Wydarzenia
+Półkolonie, wycieczki, akcje sezonowe; lista lub kalendarz
+Zapis / zapytanie
+Kontakt
+Adres, telefon, e-mail, Facebook, godziny, mapa Google
+Formularz kontaktowy
+Matlandoo i Urodziny mają najwięcej gotowej treści (osobne materiały) — dobre na pierwsze podstrony do złożenia.
+7. System designu
+Wartości hex są orientacyjne — do wyprowadzenia z wektorów logo, gdy je dostaniemy. Zdefiniować jako zmienne CSS.
+Token
+Hex
+Użycie
+--c-magenta
+#C74BC0
+marka główna, gradient hero
+--c-violet
+#7A3FD1
+marka główna, akcenty
+--c-cobalt
+#2438C4
+marka główna, gradient hero
+--c-white
+#FFFFFF
+tekst na ciemnym, tła
+--c-ink
+#22203A
+tekst na jasnym tle
+--c-mat-yellow
+#F5C13D
+strefa Matlandoo
+--c-mat-teal
+#1B9B8A
+strefa Matlandoo
+--c-mat-orange
+#E8641E
+strefa Matlandoo
+--accent-mauve
+#A8968F
+akcent podstron oferty
+--accent-lavender
+#9B84C4
+akcent podstron oferty
+Typografia (Google Fonts, font-display: swap):
+• Nagłówki: krój zaokrąglony do wyboru — Poppins, Baloo 2 lub Fredoka; wagi 500–700.
+• Tekst: Inter lub Open Sans; wagi 400–500.
+• Skala responsywna (clamp): H1 40–56 px, H2 28–36 px, H3 20–24 px, tekst 16–18 px, interlinia 1.6.
+Komponenty UI:
+• Przycisk primary: wypełnienie kolorem marki, biały tekst, duży/pełny radius; secondary: obrys.
+• Karta oferty: radius 12–16 px, lekki cień, obraz + tytuł + zdanie + link.
+• Bąbelek hero: koło/pigułka w kolorze akcentu, stan hover/focus.
+• Chip/etykieta, np. „Dzieci 6+”.
+Spacing: skala 8 px (8/16/24/32/48/64). Zaokrąglenia duże (pasują do dziecięcej, przyjaznej estetyki).
+Breakpointy (mobile-first): mobile < 640 px, tablet 640–1024 px, desktop > 1024 px. Tryb ciemny nie jest wymagany.
+8. Formularze i integracje
+Trzy formularze. Docelowy adres odbioru zgłoszeń do potwierdzenia — na dziś kolekcjepolekcjach@gmail.com.
+Formularz
+Pola
+Gdzie
+Zapis na zajęcia
+imię i wiek dziecka, imię rodzica, telefon, e-mail, wybór zajęć, wiadomość
+Angielski, Kreatywne, Matlandoo
+Rezerwacja urodzin
+imię i wiek dziecka, preferowany termin, liczba dzieci, wybór pakietu, dodatki, telefon, e-mail
+Urodziny
+Kontakt ogólny
+imię, e-mail, telefon, wiadomość
+Kontakt
+Wspólne wymagania:
+• Walidacja po stronie klienta: pola wymagane, format e-mail i telefonu, komunikaty inline po polsku przy błędnym polu.
+• Wysyłka: usługa formularzy (Netlify Forms, Formspree, EmailJS) lub własny endpoint; po sukcesie widoczne potwierdzenie.
+• Anty-spam: honeypot + reCAPTCHA v3 (lub hCaptcha).
+• RODO: obowiązkowy checkbox zgody na przetwarzanie danych z linkiem do polityki prywatności; bez zaznaczenia formularz się nie wysyła.
+• Dostępność: każde pole z <label>, obsługa klawiatury, aria-invalid przy błędzie, focus na pierwszym błędnym polu.
+Powtarzalne dane kontaktowe (telefon, e-mail) jako klikalne tel: i mailto: na każdej stronie.
+9. SEO, wydajność, dostępność, domena
+Domena:
+• centrummądrejnauki.pl to domena IDN — technicznie działa jako punycode (xn--...). Wybrać jedną wersję kanoniczną.
+• Wykupić i przekierować (301) wersję bez ogonka centrummadrejnauki.pl, bo część rodziców wpisze ją bez polskich znaków. Ustalić też z/bez www i <link rel="canonical">. SSL obowiązkowo.
+SEO:
+• Unikalny <title> i meta description na każdej stronie; jeden <h1> na stronę.
+• Dane strukturalne JSON-LD LocalBusiness: nazwa, adres (Olkusz, ul. Legionów Polskich 14), telefon, godziny.
+• Open Graph (logo + opis) pod udostępnianie na Facebooku; sitemap.xml i robots.txt; podpięcie profilu Google.
+Wydajność:
+• Obrazy w WebP z jawnymi width/height i loading="lazy"; logo i ikony jako SVG.
+• Minifikacja CSS/JS, font-display: swap; cel Lighthouse ≥ 90 na mobile.
+Dostępność (WCAG AA):
+• Kontrast tekstu do tła — uwaga na biały tekst na jasnym różu z palety głównej; na jasnych tłach tekst w --c-ink.
+• Pełna obsługa klawiatury, focus-visible, teksty alternatywne obrazów, prefers-reduced-motion dla animacji hero, <html lang="pl">.
+10. Zasoby od klienta i otwarte kwestie
+Do dostarczenia przez klientkę przed startem:
+• Logo w wektorze (SVG/AI/PDF) — Centrum Mądrej Nauki oraz Matlandoo; potrzebne do hero, favicona i ostrości grafik.
+• Zdjęcia w dobrej rozdzielczości + potwierdzone zgody rodziców na publikację wizerunku dzieci.
+• Finalne teksty podstron (część jest w mailu i PDF, reszta do uzupełnienia).
+• Linki: Facebook, Instagram (jeśli jest), dokładny punkt na Google Maps.
+Kwestie blokujące, do decyzji klientki:
+• Domena: wykupione samo centrummądrejnauki.pl, czy też wersja bez ogonka?
+• CMS: klientka chce sama edytować treści (Ścieżka B), czy strona ma być statyczna (Ścieżka A)?
+• Formularze: docelowy adres/sposób odbioru zgłoszeń.
+• Ceny: publikujemy je na stronie, czy tylko „zapytaj o wycenę”?
+• Zakładka Wydarzenia: zakres treści (półkolonie, wycieczki, akcje sezonowe — co jeszcze?).
+Kolejność wykonania (sugerowana): layout globalny (header/footer) → strona główna z hero → Matlandoo i Urodziny (najwięcej gotowej treści) → pozostałe podstrony → formularze → SEO i optymalizacja.

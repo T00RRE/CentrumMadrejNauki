@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from PIL import Image; img = Image.open\\('assets/images/Logo-Matland-Baner.png'\\); print\\(img.size\\)\")",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\mankf\\\\Desktop\\\\Projects\\\\Centrummadrenauki.pl\\\\v1\\\\assets\\\\images\\\\Logo-Matland-Baner.png\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\mankf\\\\Desktop\\\\Projects\\\\Centrummadrenauki.pl\\\\v1\\\\assets\\\\images\\\\Angielski_baner.webp\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "Bash(grep -n \"-- \" ./wymagania/specyfikacja.txt)",
+      "Bash(python3 *)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\mankf\\\\Desktop\\\\Projects\\\\Centrummadrenauki.pl\\\\v1\\\\assets\\\\images\\\\Angielski\\\\Astronauta3.webp\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "Bash(xargs sed *)"
+    ]
+  }
+}

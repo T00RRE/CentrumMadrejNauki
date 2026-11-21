@@ -1,0 +1,26 @@
+<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Centrum Mądrej Nauki">
+  <defs>
+    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C74BC0"/>
+      <stop offset="50%" stop-color="#7A3FD1"/>
+      <stop offset="100%" stop-color="#2438C4"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="78" fill="url(#lg)"/>
+  <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  <!-- Book icon -->
+  <rect x="44" y="52" width="34" height="44" rx="4" fill="rgba(255,255,255,0.9)"/>
+  <rect x="46" y="56" width="18" height="3" rx="1" fill="rgba(122,63,209,0.5)"/>
+  <rect x="46" y="62" width="22" height="3" rx="1" fill="rgba(122,63,209,0.5)"/>
+  <rect x="46" y="68" width="16" height="3" rx="1" fill="rgba(122,63,209,0.5)"/>
+  <!-- Second book / pages -->
+  <rect x="52" y="48" width="6" height="52" rx="2" fill="rgba(255,255,255,0.3)"/>
+  <!-- Atom circle -->
+  <circle cx="100" cy="72" r="14" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="3"/>
+  <ellipse cx="100" cy="72" rx="14" ry="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" transform="rotate(60 100 72)"/>
+  <ellipse cx="100" cy="72" rx="14" ry="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" transform="rotate(-60 100 72)"/>
+  <circle cx="100" cy="72" r="3" fill="rgba(255,255,255,0.9)"/>
+  <!-- Bottom text -->
+  <text x="80" y="118" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-family="Poppins, Arial, sans-serif" font-weight="700" font-size="10" letter-spacing="0.5">CENTRUM</text>
+  <text x="80" y="130" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-family="Poppins, Arial, sans-serif" font-weight="700" font-size="10" letter-spacing="0.5">MĄDREJ NAUKI</text>
+</svg>
